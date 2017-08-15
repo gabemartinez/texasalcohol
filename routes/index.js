@@ -15,9 +15,10 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET tabcPermitNumber documents page. */
+// ex. MB420026
 router.get('/permitnumber/:permitnumber', getrecords, function(req, res, next) {
   var permitnumber = req.params.permitnumber;
-  // var allrecordsobject = req.allrecordsobject;
+  var allrecordsobject = req.allrecordsobject;
   // res.render('permitnumber', { title: 'Documents by TABC Permit Number' });
   res.json( { title: 'Documents by TABC Permit Number', permitnumber });
 });
