@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-var recordSchema = new mongoose.Schema({
+var mixbevdataSchema = new mongoose.Schema({
 
   taxpayerNumber: Number,
   taxpayerName: String,
@@ -31,4 +31,4 @@ var recordSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Record', recordSchema);
+module.exports = mongoose.model('Mixbevdata', mixbevdataSchema);

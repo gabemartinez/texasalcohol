@@ -14,13 +14,12 @@ router.get('/', function(req, res, next) {
 
 /* GET tabcPermitNumber documents page. */
 // ex. MB420026
-router.get('/permitnumber/:permitnumber', getrecords, function(req, res, next) {
-  var permitnumber = req.params.permitnumber;
+router.get('/tabcpermitnumber/:tabcpermitnumber', getrecords, function(req, res, next) {
+  var tabcpermitnumber = req.params.tabcpermitnumber;
   var records = req.records;
   console.log(records);
 
-  // res.render('permitnumber', { title: 'Documents by TABC Permit Number' });
-  res.json( { title: 'Documents by TABC Permit Number', permitnumber, records });
+  res.json( { title: 'Documents by TABC Permit Number', tabcpermitnumber, records });
 });
 
 module.exports = router;
