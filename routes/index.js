@@ -1,25 +1,37 @@
 var express = require('express');
 var router = express.Router();
 
-var getrecords = require('../middleware/getRecords');
+var getRecordsByTaxpayerNumber = require('../middleware/getRecordsByTaxpayerNumber');
+var getRecordsByTaxpayerZip = require('../middleware/getRecordsByTaxpayerZip');
+var getRecordsByTABCPermitNumber = require('../middleware/getRecordsByTABCPermitNumber');
 
-// var mongoose = require('mongoose');
-// var mongoconnection = 'mongodb://txalcread:blakk865@ds011860.mlab.com:11860/txalcapp';
-// mongoose.connect(mongoconnection);
-
-/* GET home page. */
+/* GET index page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Our App' });
+  res.render('index', { title: 'WIP' });
+});
+
+/* GET taxpayerNumber documents page. */
+// ex. 32061059989
+router.get('/taxpayernumber/:input', getRecordsByTaxpayerNumber, function(req, res, next) {
+  var input = req.input;
+  var records = req.records;
+  res.json( { title: 'Documents by Taxpayer Number', input, records });
+});
+
+/* GET taxpayerZip documents page. */
+// ex. 79924
+router.get('/taxpayerzip/:input', getRecordsByTaxpayerZip, function(req, res, next) {
+  var input = req.input;
+  var records = req.records;
+  res.json( { title: 'Documents by Taxpayer Zip', input, records });
 });
 
 /* GET tabcPermitNumber documents page. */
 // ex. MB420026
-router.get('/tabcpermitnumber/:tabcpermitnumber', getrecords, function(req, res, next) {
-  var tabcpermitnumber = req.params.tabcpermitnumber;
+router.get('/tabcpermitnumber/:input', getRecordsByTABCPermitNumber, function(req, res, next) {
+  var input = req.input;
   var records = req.records;
-  console.log(records);
-
-  res.json( { title: 'Documents by TABC Permit Number', tabcpermitnumber, records });
+  res.json( { title: 'Documents by TABC Permit Number', input, records });
 });
 
 module.exports = router;

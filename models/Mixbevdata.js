@@ -31,4 +31,4 @@ var mixbevdataSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Mixbevdata', mixbevdataSchema);
+module.exports = mongoose.model('Mixbevdata', mixbevdataSchema, 'mixbevdata');
