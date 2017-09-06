@@ -11,7 +11,31 @@ var getRecordsByTaxpayerZip = function(req, res, next) {
   Mixbevdata.find({ taxpayerZip: input }, function(err, records) {
     console.log(input);
     req.input = input;
-    req.records = records;
+
+    var liquorReceipts = 0;
+    for (var i = 0; i < records.length; i++) {
+      liquorReceipts += records[i].liquorReceipts;
+    }
+
+    var wineReceipts = 0;
+    for (var i = 0; i < records.length; i++) {
+      wineReceipts += records[i].wineReceipts;
+    }
+
+    var beerReceipts = 0;
+    for (var i = 0; i < records.length; i++) {
+      beerReceipts += records[i].beerReceipts;
+    }
+
+    var returnTotal = 0;
+    for (var i = 0; i < records.length; i++) {
+      returnTotal += records[i].returnTotal;
+    }
+
+    req.liquorReceipts = liquorReceipts;
+    req.wineReceipts = wineReceipts;
+    req.beerReceipts = beerReceipts;
+    req.returnTotal = returnTotal;
     next();
   });
 
