@@ -24,7 +24,13 @@
           <p><%= taxpayerName %></p>
           <p><%= taxpayerAddress %></p>
           <p><%= taxpayerCity %>, <%= taxpayerState %> <%= taxpayerZip %></p>
-          <p><%= taxpayerPhone %></p>
+          <p>
+            <%if (taxpayerPhone == '(0NN) NNN-NNNN') { %>
+              NA
+            <% } else { %>
+              <%= taxpayerPhone %>
+            <% } %>
+          </p>
         </div>
 
         <div class="col-md-6">
