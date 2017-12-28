@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var getRecordsByTaxpayerNumber = require('../middleware/getRecordsByTaxpayerNumber');
 var getRecordsByTaxpayerZip = require('../middleware/getRecordsByTaxpayerZip');
@@ -48,6 +50,48 @@ router.get('/taxpayernumber/:input', getRecordsByTaxpayerNumber, function(req, r
   // res.json( { title: 'Documents by Taxpayer Number', input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 
   res.render('../views/taxpayernumber', { input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
+});
+
+/* POST taxpayerNumber documents form page. */
+// ex. input 32061059989
+router.get('/taxpayernumber/', urlencodedParser, function(req, res, next) {
+  // var input = req.input;
+
+  // details
+  // var taxpayerNumber = req.taxpayerNumber;
+  // var taxpayerName = req.taxpayerName;
+  // var taxpayerAddress = req.taxpayerAddress;
+  // var taxpayerCity = req.taxpayerCity;
+  // var taxpayerState = req.taxpayerState;
+  // var taxpayerZip = req.taxpayerZip;
+  // var taxpayerCounty = req.taxpayerCounty;
+  // var taxpayerPhone = req.taxpayerPhone;
+  // var locationNumber = req.locationNumber;
+  // var locationName = req.locationName;
+  // var locationAddress = req.locationAddress;
+  // var locationCity = req.locationCity;
+  // var locationState = req.locationState;
+  // var locationZip = req.locationZip;
+  // var locationCounty = req.locationCounty;
+  // var locationPhone = req.locationPhone;
+  // var tabcPermitNumber = req.tabcPermitNumber;
+
+  // var responsibilityBeginDate = req.responsibilityBeginDate;
+  // var responsibilityEndDate = req.responsibilityEndDate;
+  // var obligationEndDate = req.obligationEndDate;
+  // details
+
+  // totals
+  // var liquorReceipts = req.liquorReceipts;
+  // var wineReceipts = req.wineReceipts;
+  // var beerReceipts = req.beerReceipts;
+  // var returnTotal = req.returnTotal;
+  // totals
+
+  // res.json( { title: 'Documents by Taxpayer Number' });
+  res.render('../views/taxpayernumberform', { title: 'Documents by Taxpayer Number FORM' });
+
+  // res.render('../views/taxpayernumber', { input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 });
 
 /* GET taxpayerZip documents page. */
