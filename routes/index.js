@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var getRecordsByTaxpayerNumber = require('../middleware/getRecordsByTaxpayerNumber');
 var getRecordsByTaxpayerZip = require('../middleware/getRecordsByTaxpayerZip');
-var getRecordsByTABCPermitNumber = require('../middleware/getRecordsByTABCPermitNumber');
+var getRecordsByPermitNumber = require('../middleware/getRecordsByPermitNumber');
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -52,46 +53,18 @@ router.get('/taxpayernumber/:input', getRecordsByTaxpayerNumber, function(req, r
   res.render('../views/taxpayernumber', { input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 });
 
-/* POST taxpayerNumber documents form page. */
-// ex. input 32061059989
-router.get('/taxpayernumber/', urlencodedParser, function(req, res, next) {
-  // var input = req.input;
+/* GET permitnumber documents form page. */
+// ex. input MB962929
+router.get('/permitnumberform/', function(req, res, next) {
+  res.render('../views/permitnumberform');
+});
 
-  // details
-  // var taxpayerNumber = req.taxpayerNumber;
-  // var taxpayerName = req.taxpayerName;
-  // var taxpayerAddress = req.taxpayerAddress;
-  // var taxpayerCity = req.taxpayerCity;
-  // var taxpayerState = req.taxpayerState;
-  // var taxpayerZip = req.taxpayerZip;
-  // var taxpayerCounty = req.taxpayerCounty;
-  // var taxpayerPhone = req.taxpayerPhone;
-  // var locationNumber = req.locationNumber;
-  // var locationName = req.locationName;
-  // var locationAddress = req.locationAddress;
-  // var locationCity = req.locationCity;
-  // var locationState = req.locationState;
-  // var locationZip = req.locationZip;
-  // var locationCounty = req.locationCounty;
-  // var locationPhone = req.locationPhone;
-  // var tabcPermitNumber = req.tabcPermitNumber;
+/* POST permitnumber documents form page. */
+// ex. input MB962929
+router.post('/permitnumberform/', urlencodedParser, getRecordsByPermitNumber, function(req, res, next) {
 
-  // var responsibilityBeginDate = req.responsibilityBeginDate;
-  // var responsibilityEndDate = req.responsibilityEndDate;
-  // var obligationEndDate = req.obligationEndDate;
-  // details
+  res.render('../views/permitnumberform-success', { data: req.body, permitnumber: req.permitnumber });
 
-  // totals
-  // var liquorReceipts = req.liquorReceipts;
-  // var wineReceipts = req.wineReceipts;
-  // var beerReceipts = req.beerReceipts;
-  // var returnTotal = req.returnTotal;
-  // totals
-
-  // res.json( { title: 'Documents by Taxpayer Number' });
-  res.render('../views/taxpayernumberform', { title: 'Documents by Taxpayer Number FORM' });
-
-  // res.render('../views/taxpayernumber', { input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 });
 
 /* GET taxpayerZip documents page. */
@@ -111,10 +84,10 @@ router.get('/taxpayerzip/:input', getRecordsByTaxpayerZip, function(req, res, ne
 
 /* GET tabcPermitNumber documents page. */
 // ex. MB420026
-router.get('/tabcpermitnumber/:input', getRecordsByTABCPermitNumber, function(req, res, next) {
-  var input = req.input;
-  var records = req.records;
-  res.json( { title: 'Documents by TABC Permit Number', input, records });
-});
+// router.get('/tabcpermitnumber/:input', getRecordsByTABCPermitNumber, function(req, res, next) {
+//   var input = req.input;
+//   var records = req.records;
+//   res.json( { title: 'Documents by TABC Permit Number', input, records });
+// });
 
 module.exports = router;
