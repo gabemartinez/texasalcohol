@@ -10,6 +10,7 @@ var getRecordsByPermitNumber = require('../middleware/getRecordsByPermitNumber')
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
+
   res.render('index', { title: 'WIP' });
 });
 
@@ -56,6 +57,7 @@ router.get('/taxpayernumber/:input', getRecordsByTaxpayerNumber, function(req, r
 /* GET permitnumber documents form page. */
 // ex. input MB962929
 router.get('/permitnumberform/', function(req, res, next) {
+
   res.render('../views/permitnumberform');
 });
 
@@ -63,8 +65,24 @@ router.get('/permitnumberform/', function(req, res, next) {
 // ex. input MB962929
 router.post('/permitnumberform/', urlencodedParser, getRecordsByPermitNumber, function(req, res, next) {
 
-  res.render('../views/permitnumberform-success', { data: req.body, permitnumber: req.permitnumber });
+  var permitnumber = req.permitnumber;
+  // var records = req.records;
 
+  var tabcPermitNumber = req.tabcPermitNumber;
+  var taxpayerName = req.taxpayerName;
+  var taxpayerAddress = req.taxpayerAddress;
+  var taxpayerCity = req.taxpayerCity;
+  var taxpayerState = req.taxpayerState;
+  var taxpayerZip = req.taxpayerZip;
+  var taxpayerCounty = req.taxpayerCounty;
+  var taxpayerPhone = req.taxpayerPhone;
+
+  var liquorReceipts = req.liquorReceipts;
+  var wineReceipts = req.wineReceipts;
+  var beerReceipts = req.beerReceipts;
+  var returnTotal = req.returnTotal;
+
+  res.render('../views/permitnumberform-success', { permitnumber, tabcPermitNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 });
 
 /* GET taxpayerZip documents page. */
