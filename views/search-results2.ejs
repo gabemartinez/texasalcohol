@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+  <main role="main">
+
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Texas MixedBev Analytics</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <p>Results</p>
+
+          <ul>
+          <% for(var i=0; i<uniquelocationnames.length; i++) {%>
+             <li><a href='/tabcpermitnumber/<%= uniquelocationnames[i] %>'><%= uniquelocationnames[i] %></a></li>
+          <% } %>
+          </ul>
+
+        </div>
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+
+        </div>
+      </div>
+
+      <hr />
+    </div>
+
+  </main>
+
+  <% include partials/footer %>

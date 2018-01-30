@@ -8,6 +8,8 @@ var getRecordsByTABCpermitNumber = require('../middleware/getRecordsByTABCpermit
 var getRecordsByTaxpayerZip = require('../middleware/getRecordsByTaxpayerZip');
 var getRecordsByPermitNumber = require('../middleware/getRecordsByPermitNumber');
 var getSearchResults = require('../middleware/getSearchResults');
+var getSearchResults2 = require('../middleware/getSearchResults2');
+// var getSearchRecords = require('../middleware/getSearchRecords');
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -70,15 +72,47 @@ router.get('/search/', function(req, res, next) {
 // ex. input MB962929
 router.post('/search/', urlencodedParser, getSearchResults, function(req, res, next) {
 
-  var keyword = req.keyword;
-  var records = req.records;
+  // var keyword = req.keyword;
+  // console.log(keyword);
+
+  // var records = req.records;
+  // console.log(records);
+
   var uniquepermitnumbers = req.uniquepermitnumbers;
-  console.log(keyword);
-  console.log(records);
   console.log(uniquepermitnumbers);
 
+  // var searchrecords = req.searchrecords;
+  // console.log(searchrecords);
+
   res.render('../views/search-results', { uniquepermitnumbers });
-  // res.json({uniquepermitnumbers});
+  // res.json({searchrecords});
+});
+
+/* GET search form page. */
+// ex. input 929
+router.get('/search2/', function(req, res, next) {
+
+  res.render('../views/search2');
+});
+
+/* POST permitnumber documents form page. */
+// ex. input MB962929
+router.post('/search2/', urlencodedParser, getSearchResults2, function(req, res, next) {
+
+  // var keyword = req.keyword;
+  // console.log(keyword);
+
+  // var records = req.records;
+  // console.log(records);
+
+  var uniquelocationnames = req.uniquelocationnames;
+  // console.log(uniquelocationnames);
+
+  // var searchrecords = req.searchrecords;
+  // console.log(searchrecords);
+
+  res.render('../views/search-results2', { uniquelocationnames });
+  // res.json({uniquelocationnames});
 });
 
 /* GET permitnumber documents form page. */
