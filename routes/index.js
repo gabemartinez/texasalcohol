@@ -99,10 +99,10 @@ router.get('/search2/', function(req, res, next) {
 // ex. input MB962929
 router.post('/search2/', urlencodedParser, getSearchResults2, function(req, res, next) {
 
-  // var keyword = req.keyword;
+  var keyword = req.keyword;
   // console.log(keyword);
 
-  // var records = req.records;
+  var records = req.records;
   // console.log(records);
 
   var uniquelocationnames = req.uniquelocationnames;
@@ -111,8 +111,8 @@ router.post('/search2/', urlencodedParser, getSearchResults2, function(req, res,
   // var searchrecords = req.searchrecords;
   // console.log(searchrecords);
 
-  res.render('../views/search-results2', { uniquelocationnames });
-  // res.json({uniquelocationnames});
+  // res.render('../views/search-results2', { uniquelocationnames });
+  res.json({keyword, records});
 });
 
 /* GET permitnumber documents form page. */
