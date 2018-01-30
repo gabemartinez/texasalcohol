@@ -54,11 +54,11 @@ router.get('/tabcpermitnumber/:input', getRecordsByTABCpermitNumber, function(re
   // var returnTotal = req.returnTotal;
   // totals
 
-  res.json( { title: 'Documents by TABC Permit Number', input, records });
+  // res.json( { title: 'Documents by TABC Permit Number', input, records });
 
   // res.json( { title: 'Documents by TABC Permit Number', input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 
-  // res.render('../views/taxpayernumber', { input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
+  res.render('../views/tabcpermitnumber', { title: 'Documents by TABC Permit Number', input, records });
 });
 
 /* GET search form page. */
