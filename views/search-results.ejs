@@ -4,28 +4,35 @@
 
     <div class="jumbotron">
       <div class="container">
-        <h2>Texas MixedBev Analytics</h2>
+        <h2><%= title %></h2>
       </div>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-sm">
-          <p>Results</p>
+        <div class="col-md">
 
-          <ul>
-          <% for(var i=0; i<uniquepermitnumbers.length; i++) {%>
-             <li><a href='/tabcpermitnumber/<%= uniquepermitnumbers[i] %>'><%= uniquepermitnumbers[i] %></a></li>
-          <% } %>
-          </ul>
+          <p>You searched for keyword: <%= keyword %></p>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Location Name</th>
+                <th scope="col">Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i < records.length; i++) {%>
+              <tr>
+                <td><a href='/report/<%= records[i]["_id"].tabcPermitNumber %>'><%= records[i]["_id"].locationName %></a></td>
+                <td><%= records[i]["_id"].locationAddress %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
 
         </div>
-        <div class="col-sm">
 
-        </div>
-        <div class="col-sm">
-
-        </div>
       </div>
 
       <hr />

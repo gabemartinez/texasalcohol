@@ -8,19 +8,14 @@ var getSearchResults = function(req, res, next) {
 
   var Mixbevdata = require('../models/Mixbevdata');
 
-  Mixbevdata.findOne({ tabcPermitNumber: {$regex : "^" + keyword} }, function(err, records) {
-
+  Mixbevdata.aggregate([
+    { $match : { locationName: {$regex : ".*"+keyword+".*"} } },
+    { $group: { "_id": { tabcPermitNumber: "$tabcPermitNumber", locationName: "$locationName", locationAddress: "$locationAddress" } } }
+  ], function(err, records) {
     req.keyword = keyword;
     req.records = records;
-
-    // next();
-
-  }).distinct('tabcPermitNumber').exec(function(err, uniquepermitnumbers) {
-
-    req.uniquepermitnumbers = uniquepermitnumbers;
-
+    // console.log(records);
     next();
-
   });
 
 };
