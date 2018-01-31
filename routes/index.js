@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 /* GET taxpayerNumber documents page. */
 // ex. 32061059989
-router.get('/tabcpermitnumber/:input', getRecordsByTABCpermitNumber, function(req, res, next) {
+router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, next) {
   var input = req.input;
   var records = req.records;
 
@@ -58,7 +58,7 @@ router.get('/tabcpermitnumber/:input', getRecordsByTABCpermitNumber, function(re
 
   // res.json( { title: 'Documents by TABC Permit Number', input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
 
-  res.render('../views/tabcpermitnumber', { title: 'Documents by TABC Permit Number', input, records });
+  res.render('../views/report', { input, records });
 });
 
 /* GET search form page. */
@@ -111,8 +111,8 @@ router.post('/search2/', urlencodedParser, getSearchResults2, function(req, res,
   // var searchrecords = req.searchrecords;
   // console.log(searchrecords);
 
-  // res.render('../views/search-results2', { uniquelocationnames });
-  res.json({keyword, records});
+  res.render('../views/search-results2', {keyword, records});
+  // res.json({keyword, records});
 });
 
 /* GET permitnumber documents form page. */

@@ -5,26 +5,18 @@ var getSearchResults2 = function(req, res, next) {
   var connection = mongoose.connection;
 
   var keyword = req.body.keyword.toUpperCase();
-  // var keyword = "PASO";
 
   var Mixbevdata = require('../models/Mixbevdata');
 
-  Mixbevdata.find({ locationName: {$regex : ".*"+keyword+".*"} }, function(err, records) {
-
+  Mixbevdata.aggregate([
+    { $match : { locationName: {$regex : ".*"+keyword+".*"} } },
+    { $group: { "_id": { tabcPermitNumber: "$tabcPermitNumber", locationName: "$locationName" } } }
+  ], function(err, records) {
     req.keyword = keyword;
     req.records = records;
-
+    // console.log(records);
     next();
-
   });
-
-  // .distinct('locationName').exec(function(err, uniquelocationnames) {
-  //
-  //   req.uniquelocationnames = uniquelocationnames;
-  //
-  //   next();
-  //
-  // });
 
 };
 

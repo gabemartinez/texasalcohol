@@ -9,7 +9,7 @@ var getRecordsByTABCpermitNumber = function(req, res, next) {
   var phoneFormatter = require('phone-formatter');
 
   Mixbevdata.find({ tabcPermitNumber: input }, function(err, records) {
-    console.log(input);
+    // console.log(input);
     req.input = input;
     req.records = records;
 
@@ -61,6 +61,7 @@ var getRecordsByTABCpermitNumber = function(req, res, next) {
     // req.wineReceipts = currencyFormatter.format(wineReceipts, { code: 'USD' });
     // req.beerReceipts = currencyFormatter.format(beerReceipts, { code: 'USD' });
     // req.returnTotal = currencyFormatter.format(returnTotal, { code: 'USD' });
+
     next();
   });
 
