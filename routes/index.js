@@ -43,6 +43,9 @@ router.post('/search/', urlencodedParser, getSearchResults, function(req, res, n
 router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, next) {
   var input = req.input;
   var records = req.records;
+  var allReturnTotals = req.allReturnTotals;
+  var allObligationEndDates = req.allObligationEndDates;
+
 
   // details
   // var taxpayerNumber = req.taxpayerNumber;
@@ -78,7 +81,7 @@ router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, ne
   // res.json( { title: 'Documents by TABC Permit Number', input, records });
 
   // res.json( { title: 'Documents by TABC Permit Number', input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
-  res.render('../views/report', { title: 'Report', input, records });
+  res.render('../views/report', { title: 'Report', input, records, allReturnTotals, allObligationEndDates });
 });
 
 module.exports = router;

@@ -13,6 +13,20 @@ var getRecordsByTABCpermitNumber = function(req, res, next) {
     req.input = input;
     req.records = records;
 
+    var allReturnTotals = [];
+    for (var i = 0; i < records.length; i++) {
+      allReturnTotals.push(records[i].returnTotal);
+    }
+    // console.log(allReturnTotals);
+    req.allReturnTotals = allReturnTotals;
+
+    var allObligationEndDates = [];
+    for (var i = 0; i < records.length; i++) {
+      allObligationEndDates.push(records[i].obligationEndDate);
+    }
+    // console.log(allObligationEndDates);
+    req.allObligationEndDates = allObligationEndDates;
+
     // req.taxpayerNumber = records[0].taxpayerNumber;
     // req.taxpayerName = records[0].taxpayerName.replace(/\s*$/,"");
     // req.taxpayerAddress = records[0].taxpayerAddress.replace(/\s*$/,"");
