@@ -11,14 +11,18 @@
         <div class="container">
 
           <div class="row">
-
             <div class="col-md-12">
+
+              <h4><%= locationName %></h4>
+              <h6><%= locationAddress %></h6>
+              <h6><%= locationCity %> <%= locationState %>, <%= locationZip %></h6>
 
               <canvas id="myChart" width="100%" height="100%"></canvas>
               <script>
+
               var ctx = document.getElementById("myChart");
               var myChart = new Chart(ctx, {
-                  type: 'bar',
+                  type: 'line',
                   data: {
                       labels: <%- JSON.stringify(allObligationEndDates); %>,
                       datasets: [{
@@ -26,22 +30,28 @@
                           data: <%- JSON.stringify(allReturnTotals); %>,
                           backgroundColor: [
                               'rgba(255, 99, 132, 0.2)',
-                              'rgba(54, 162, 235, 0.2)',
-                              'rgba(255, 206, 86, 0.2)',
-                              'rgba(75, 192, 192, 0.2)',
-                              'rgba(153, 102, 255, 0.2)',
-                              'rgba(255, 159, 64, 0.2)'
                           ],
                           borderColor: [
-                              'rgba(255,99,132,1)',
-                              'rgba(54, 162, 235, 1)',
-                              'rgba(255, 206, 86, 1)',
-                              'rgba(75, 192, 192, 1)',
-                              'rgba(153, 102, 255, 1)',
-                              'rgba(255, 159, 64, 1)'
+                              'rgba(255, 99, 132, 1)',
                           ],
-                          borderWidth: 1
-                      }]
+                          borderWidth: 1,
+                          fill: true,
+                          lineTension: 0
+                      },
+                      {
+                          label: 'Return Total 2',
+                          data: <%- JSON.stringify(allReturnTotalsSecondary); %>,
+                          backgroundColor: [
+                              'rgba(0, 255, 0, 0.2)',
+                          ],
+                          borderColor: [
+                              'rgba(0, 255, 0, 1)',
+                          ],
+                          borderWidth: 1,
+                          fill: true,
+                          lineTension: 0
+                      }
+                    ]
                   },
                   options: {
                       scales: {
@@ -53,10 +63,12 @@
                       }
                   }
               });
+
+
+
               </script>
 
             </div>
-
           </div>
 
           <hr>

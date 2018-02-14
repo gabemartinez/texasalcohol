@@ -44,6 +44,7 @@ router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, ne
   var input = req.input;
   var records = req.records;
   var allReturnTotals = req.allReturnTotals;
+  var allReturnTotalsSecondary = req.allReturnTotalsSecondary;
   var allObligationEndDates = req.allObligationEndDates;
 
 
@@ -57,11 +58,11 @@ router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, ne
   // var taxpayerCounty = req.taxpayerCounty;
   // var taxpayerPhone = req.taxpayerPhone;
   // var locationNumber = req.locationNumber;
-  // var locationName = req.locationName;
-  // var locationAddress = req.locationAddress;
-  // var locationCity = req.locationCity;
-  // var locationState = req.locationState;
-  // var locationZip = req.locationZip;
+  var locationName = req.locationName;
+  var locationAddress = req.locationAddress;
+  var locationCity = req.locationCity;
+  var locationState = req.locationState;
+  var locationZip = req.locationZip;
   // var locationCounty = req.locationCounty;
   // var locationPhone = req.locationPhone;
   // var tabcPermitNumber = req.tabcPermitNumber;
@@ -81,7 +82,7 @@ router.get('/report/:input', getRecordsByTABCpermitNumber, function(req, res, ne
   // res.json( { title: 'Documents by TABC Permit Number', input, records });
 
   // res.json( { title: 'Documents by TABC Permit Number', input, taxpayerNumber, taxpayerName, taxpayerAddress, taxpayerCity, taxpayerState, taxpayerZip, taxpayerCounty, taxpayerPhone, locationNumber, locationName, locationAddress, locationCity, locationState, locationZip, locationCounty, locationPhone, tabcPermitNumber, liquorReceipts, wineReceipts, beerReceipts, returnTotal });
-  res.render('../views/report', { title: 'Report', input, records, allReturnTotals, allObligationEndDates });
+  res.render('../views/report', { title: 'Return Total Report', input, records, allReturnTotals, allReturnTotalsSecondary, allObligationEndDates, locationName, locationAddress, locationCity, locationState, locationZip });
 });
 
 module.exports = router;

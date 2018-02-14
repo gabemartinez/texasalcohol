@@ -20,6 +20,13 @@ var getRecordsByTABCpermitNumber = function(req, res, next) {
     // console.log(allReturnTotals);
     req.allReturnTotals = allReturnTotals;
 
+    var allReturnTotalsSecondary = [];
+    for (var i = 0; i < records.length; i++) {
+      allReturnTotalsSecondary.push(records[i].returnTotal/2);
+    }
+    // console.log(allReturnTotalsSecondary);
+    req.allReturnTotalsSecondary = allReturnTotalsSecondary;
+
     var allObligationEndDates = [];
     for (var i = 0; i < records.length; i++) {
       allObligationEndDates.push(records[i].obligationEndDate);
@@ -37,12 +44,12 @@ var getRecordsByTABCpermitNumber = function(req, res, next) {
     // req.taxpayerPhone = phoneFormatter.format(records[0].taxpayerPhone.toString(), "(NNN) NNN-NNNN");
 
     // req.locationNumber = records[0].locationNumber;
-    // req.locationName = records[0].locationName.replace(/\s*$/,"");
+    req.locationName = records[0].locationName.replace(/\s*$/,"");
     // str = str.replace(/\s*$/,"");
-    // req.locationAddress = records[0].locationAddress.replace(/\s*$/,"");
-    // req.locationCity = records[0].locationCity.replace(/\s*$/,"");
-    // req.locationState = records[0].locationState.replace(/\s*$/,"");
-    // req.locationZip = records[0].locationZip;
+    req.locationAddress = records[0].locationAddress.replace(/\s*$/,"");
+    req.locationCity = records[0].locationCity.replace(/\s*$/,"");
+    req.locationState = records[0].locationState.replace(/\s*$/,"");
+    req.locationZip = records[0].locationZip;
     // req.locationCounty = records[0].locationCounty;
     // req.locationPhone = phoneFormatter.format(records[0].locationPhone.toString(), "(NNN) NNN-NNNN");
 
